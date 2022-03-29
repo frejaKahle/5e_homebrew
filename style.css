@@ -86,6 +86,11 @@ body.dnd {
     border-collapse: collapse;
 }
 
+.dnd table {
+    margin-top: 0.5rem;
+    width: 100%;
+}
+
 .dnd th,
 .dnd td {
     padding: 15px 5px;

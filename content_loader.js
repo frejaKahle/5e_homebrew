@@ -104,6 +104,7 @@ function dndclass(location, name, elem) {
                 "</p><h2>Creating" + data.aan + data.clsname + "</h2><div class=\"quick\"><h5>Quick Build</h5><p>" + data.quickbuild + "</p></div>" +
                 table(data.table, "The " + data.clsname + " Table");
             elem.appendChild(classdiv);
+            classdiv.style = "margin-bottom:30vh"
             features(data.features, folder + "/features").then(feats => {
                 classdiv.innerHTML += feats + "<h2 id=\"#" + nameForm(data.subclassname) + "\">" + data.subclassname + "</h2><p>" + data.subclassdesc + "</p>";
                 dndsubclasses(data.subclasses, folder + "/subclasses", classdiv);
