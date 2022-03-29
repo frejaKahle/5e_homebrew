@@ -12,8 +12,5 @@
 <script type="text/javascript" src="../../content_loader.js"></script>
 <script type="text/javascript">
     var body = document.getElementsByTagName("body")[0];
-    dndclass("../../Classes", "Astromancer").then(page => {
-        console.log(page);
-        body.innerHTML = page;
-    });
+    dndclass("../../Classes", "Astromancer", body);
 </script>

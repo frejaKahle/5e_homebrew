@@ -450,5 +450,10 @@
         "Ability Score Improvement",
         "Spell Cycle",
         "Astronomical Aura"
+    ],
+    "subclassname": "Astronomical Objects",
+    "subclassdesc": "Astromancers have many options to draw power from. Specializing in a specific source of power can grant special abilities.",
+    "subclasses": [
+        "Dwarf Star"
     ]
 }

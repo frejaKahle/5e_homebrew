@@ -2,6 +2,10 @@ function nameForm(text) {
     return text.replaceAll(" ", "_").toLowerCase();
 }
 
+function nameFormInv(text) {
+    return text.replaceAll("_", " ").replaceAll(/(?:^|\s)\S/g, function(a) { return a.toUpperCase(); });
+}
+
 function feature(name, location) {
     let html = "<h4>" + name + "</h4>";
     return fetch(location + "/" + nameForm(name) + ".html")
@@ -9,8 +13,8 @@ function feature(name, location) {
         .then(text => { return html + text });
 }
 
-function features(names, location, idx = 0) {
-    let promises = []
+function features(names, location) {
+    let promises = [];
     names.forEach(name => {
         promises.push(feature(name, location))
     });
@@ -64,17 +68,46 @@ function table(tbl, title) {
     return html + "</table>";
 }
 
-function dndclass(location, name) {
-
-    let folder = location + "/" + name;
+function dndsubclass(name, location) {
+    let folder = location + "/" + nameForm(name);
+    let html = "<h3>" + name + "</h3>";
     return fetch(folder + "/" + "features.json")
         .then(response => response.json())
         .then(data => {
-            let html = "<div><br><h1>" + data.clsname + "</h1><p cstyle=\"font-size:20px; color:grey; display:inline;\">Class Details</p><p>" + data.clsflavor + "</p><h2>" + data.sflavorname + "</h2><p>" + data.sflavor +
+            html = html + "<p>" + data.scdesc + "</p>";
+            return features(data.features, folder).then(text => {
+                console.log(text);
+                return html + text;
+            });
+        });
+}
+
+function dndsubclasses(names, location, div) {
+    let promises = [];
+    names.forEach(name => {
+        promises.push(dndsubclass(name, location));
+    });
+    Promise.all(promises).then((values) => {
+        values.forEach(sc => {
+            div.innerHTML += sc;
+        });
+    });
+}
+
+function dndclass(location, name, elem) {
+    let folder = location + "/" + name;
+    fetch(folder + "/" + "features.json")
+        .then(response => response.json())
+        .then(data => {
+            classdiv = document.createElement('div');
+            classdiv.innerHTML += "<br><h1>" + data.clsname + "</h1><p cstyle=\"font-size:20px; color:grey; display:inline;\">Class Details</p><p>" + data.clsflavor + "</p><h2>" + data.sflavorname + "</h2><p>" + data.sflavor +
                 "</p><h2>Creating" + data.aan + data.clsname + "</h2><div class=\"quick\"><h5>Quick Build</h5><p>" + data.quickbuild + "</p></div>" +
                 table(data.table, "The " + data.clsname + " Table");
-            return features(data.features, location + "/" + name + "/features").then(feats => {
-                return html + feats + "</div>";
+            elem.appendChild(classdiv);
+            features(data.features, folder + "/features").then(feats => {
+                classdiv.innerHTML += feats + "<h2 id=\"#" + nameForm(data.subclassname) + "\">" + data.subclassname + "</h2><p>" + data.subclassdesc + "</p>";
+                dndsubclasses(data.subclasses, folder + "/subclasses", classdiv);
             });
+
         });
 }
