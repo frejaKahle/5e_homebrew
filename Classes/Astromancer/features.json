@@ -1,0 +1,454 @@
+{
+    "clsname": "Astromancer",
+    "clsflavor": "[INSERT FLAVOR TEXT FOR ASTROMANCER]",
+    "sflavorname": "Connection to the Stars",
+    "sflavor": "[INSERT FLAVOR TEXT FOR Connection to the Stars]",
+    "aan": " an ",
+    "creation": "[INSERT QUESTIONS FOR PLAYER]",
+    "quickbuild": "You can make an astromancer quickly by following these suggestions. First, put your highest ability score in Intelligence or Wisdom, followed by Dexterity or Constitution. Second, choose the sage background.",
+    "table": [
+        [{
+                "rowspan": "2",
+                "value": "Level"
+            },
+            {
+                "rowspan": "2",
+                "value": "Proficiency Bonus"
+            },
+            {
+                "rowspan": "2",
+                "value": "Features"
+            },
+            {
+                "rowspan": "2",
+                "value": "Cantrips Known"
+            },
+            {
+                "colspan": "9",
+                "value": "- Spell Slots per Level"
+            },
+            {
+                "rowspan": "2",
+                "value": "Theses Known"
+            }
+        ],
+        [
+            "1st",
+            "2nd",
+            "3rd",
+            "4th",
+            "5th",
+            "6th",
+            "7th",
+            "8th",
+            "9th"
+        ],
+        [
+            "1st",
+            "+2",
+            {
+                "refs": ["Spellcasting", "Astronomical Mechanism"],
+                "value": "",
+                "classes": ["tlta"]
+            },
+            "2",
+            "2",
+            "-",
+            "-",
+            "-",
+            "-",
+            "-",
+            "-",
+            "-",
+            "-",
+            "-"
+        ],
+        [
+            "2nd",
+            "+2",
+            {
+                "refs": ["Astronomical Theses"],
+                "value": "",
+                "classes": ["tlta"]
+            },
+            "2",
+            "2",
+            "-",
+            "-",
+            "-",
+            "-",
+            "-",
+            "-",
+            "-",
+            "-",
+            "2"
+        ],
+        [
+            "3rd",
+            "+2",
+            {
+                "refs": ["Atronomical Object"],
+                "value": "",
+                "classes": ["tlta"]
+            },
+            "2",
+            "2",
+            "2",
+            "-",
+            "-",
+            "-",
+            "-",
+            "-",
+            "-",
+            "-",
+            "2"
+        ],
+        [
+            "4th",
+            "+2",
+            {
+                "refs": ["Ability Score Improvement"],
+                "value": "",
+                "classes": ["tlta"]
+            },
+            "3",
+            "3",
+            "3",
+            "-",
+            "-",
+            "-",
+            "-",
+            "-",
+            "-",
+            "-",
+            "2"
+        ],
+        [
+            "5th",
+            "+3",
+            {
+                "refs": ["Power Cycle"],
+                "value": "",
+                "classes": ["tlta"]
+            },
+            "3",
+            "3",
+            "3",
+            "2",
+            "-",
+            "-",
+            "-",
+            "-",
+            "-",
+            "-",
+            "2"
+        ],
+        [
+            "6th",
+            "+3",
+            {
+                "value": "Astronomical Source Feature",
+                "classes": ["tlta"]
+            },
+            "3",
+            "4",
+            "3",
+            "3",
+            "-",
+            "-",
+            "-",
+            "-",
+            "-",
+            "-",
+            "3"
+        ],
+        [
+            "7th",
+            "+3",
+            {
+                "refs": ["Astronomical Mechanism"],
+                "value": " (Improvement)",
+                "classes": ["tlta"]
+            },
+            "3",
+            "4",
+            "3",
+            "3",
+            "1",
+            "-",
+            "-",
+            "-",
+            "-",
+            "-",
+            "3"
+        ],
+        [
+            "8th",
+            "+3",
+            {
+                "refs": ["Ability Score Improvement"],
+                "value": "",
+                "classes": ["tlta"]
+            },
+            "3",
+            "4",
+            "3",
+            "3",
+            "1",
+            "-",
+            "-",
+            "-",
+            "-",
+            "-",
+            "3"
+        ],
+        [
+            "9th",
+            "+4",
+            {
+                "refs": ["Power Cycle"],
+                "value": " (Imporvement)",
+                "classes": ["tlta"]
+            },
+            "3",
+            "4",
+            "3",
+            "3",
+            "3",
+            "1",
+            "-",
+            "-",
+            "-",
+            "-",
+            "3"
+        ],
+        [
+            "10th",
+            "+4",
+            {
+                "refs": ["Astronomical Aura"],
+                "value": "",
+                "classes": ["tlta"]
+            },
+            "4",
+            "4",
+            "3",
+            "3",
+            "3",
+            "2",
+            "-",
+            "-",
+            "-",
+            "-",
+            "4"
+        ],
+        [
+            "11th",
+            "+4",
+            {
+                "value": "&mdash;",
+                "classes": ["tlta"]
+            },
+            "4",
+            "4",
+            "3",
+            "3",
+            "3",
+            "2",
+            "1",
+            "-",
+            "-",
+            "-",
+            "4"
+        ],
+        [
+            "12th",
+            "+4",
+            {
+                "refs": ["Ability Score Improvement"],
+                "value": "",
+                "classes": ["tlta"]
+            },
+            "4",
+            "4",
+            "3",
+            "3",
+            "3",
+            "2",
+            "1",
+            "-",
+            "-",
+            "-",
+            "4"
+        ],
+        [
+            "13th",
+            "+5",
+            {
+                "refs": ["Power Cycle"],
+                "value": " (Improvement)",
+                "classes": ["tlta"]
+            },
+            "4",
+            "4",
+            "3",
+            "3",
+            "3",
+            "2",
+            "1",
+            "1",
+            "-",
+            "-",
+            "4"
+        ],
+        [
+            "14th",
+            "+5",
+            {
+                "value": "Astronomical Source Feature",
+                "classes": ["tlta"]
+            },
+            "4",
+            "4",
+            "3",
+            "3",
+            "3",
+            "2",
+            "1",
+            "1",
+            "-",
+            "-",
+            "5"
+        ],
+        [
+            "15th",
+            "+5",
+            {
+                "value": "&mdash;",
+                "classes": ["tlta"]
+            },
+            "4",
+            "4",
+            "3",
+            "3",
+            "3",
+            "2",
+            "1",
+            "1",
+            "1",
+            "-",
+            "5"
+        ],
+        [
+            "16th",
+            "+5",
+            {
+                "refs": ["Ability Score Improvement"],
+                "value": "",
+                "classes": ["tlta"]
+            },
+            "4",
+            "4",
+            "3",
+            "3",
+            "3",
+            "2",
+            "1",
+            "1",
+            "1",
+            "-",
+            "5"
+        ],
+        [
+            "17th",
+            "+6",
+            {
+                "refs": ["Power Cycle"],
+                "value": " (Improvement)",
+                "classes": ["tlta"]
+            },
+            "4",
+            "4",
+            "3",
+            "3",
+            "3",
+            "2",
+            "1",
+            "1",
+            "1",
+            "1",
+            "5"
+        ],
+        [
+            "18th",
+            "+6",
+            {
+                "value": "&mdash;",
+                "classes": ["tlta"]
+            },
+            "4",
+            "4",
+            "3",
+            "3",
+            "3",
+            "2",
+            "1",
+            "1",
+            "1",
+            "1",
+            "6"
+        ],
+        [
+            "19th",
+            "+6",
+            {
+                "refs": ["Ability Score Improvement"],
+                "value": "",
+                "classes": ["tlta"]
+            },
+            "4",
+            "4",
+            "3",
+            "3",
+            "3",
+            "2",
+            "1",
+            "1",
+            "1",
+            "1",
+            "6"
+        ],
+        [
+            "20th",
+            "+6",
+            {
+                "value": "Astronomical Source Feature",
+                "classes": ["tlta"]
+            },
+            "4",
+            "4",
+            "3",
+            "3",
+            "3",
+            "2",
+            "1",
+            "1",
+            "1",
+            "1",
+            "6"
+        ]
+    ],
+    "features": [
+        "Hit Points",
+        "Proficiencies",
+        "Equipment",
+        "Spellcasting",
+        "Astronomical Mechanism",
+        "Astronomical Theses",
+        "Astronomical Object",
+        "Object Spells",
+        "Ability Score Improvement",
+        "Spell Cycle",
+        "Astronomical Aura"
+    ]
+}
