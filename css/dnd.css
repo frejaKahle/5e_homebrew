@@ -217,8 +217,7 @@ nav.side a {
     color: var(--txt);
     border-left: 0;
     margin-left: 3px;
-    transition: color 0.75s ease;
-    transition: font-size 0.25s ease;
+    transition: color 0.5s linear, font-size 0.25s ease;
 }
 
 
@@ -229,8 +228,8 @@ nav.side>div>ul div:not(:is(.open, .current)) ul * {
     font-size: 0;
 }
 
-nav.side>div>ul div:not(:is(.open, .current)) :is(ul, ul div.dropbtn) {
-    height: 0;
+nav.side>div>ul div:not(:is(.open, .current)) ul div.dropbtn i {
+    border: none;
 }
 
 
