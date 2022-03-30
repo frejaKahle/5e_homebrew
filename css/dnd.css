@@ -17,16 +17,32 @@ html {
     scroll-behavior: smooth;
 }
 
-body {
+body,
+html {
     width: 100%;
+    height: 100%;
     margin: 0;
 }
 
-body>div {
-    width: calc(70% - 1.5vw);
-    display: block;
+.content {
+    margin: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.primarycontent {
+    max-width: 70%;
+    padding-right: 15px;
+    flex-grow: 1;
     position: relative;
-    left: 30vw;
+    min-height: min-content;
+    max-height: none;
+}
+
+.secondarycontent {
+    flex: 2;
+    width: 30%
 }
 
 div {
@@ -36,7 +52,10 @@ div {
 
 #top {
     scroll-margin-top: 0;
-    height: 10px;
+    width: 100%;
+    flex-shrink: 0;
+    height: 50px;
+    padding-bottom: 1px;
 }
 
 a {
@@ -147,78 +166,97 @@ li::before {
     margin-right: 0.75em;
 }
 
-nav {
-    width: calc(30vw - 30px);
-    position: fixed;
-    top: 15px;
-    left: 15px;
+
+/* SIDENAV ELEMENTS */
+
+nav.side {
     display: block;
+    padding: 25px 15px 0 15px;
 }
 
-nav>div {
-    width: 100%;
-    overflow-y: auto;
+nav.side.fixed {
+    top: 0px;
+    position: fixed;
+    margin-top: 0;
+    width: calc(30% - 45px);
+}
+
+
+/* All lists */
+
+nav.side ul {
     margin: 0;
     padding: 0;
 }
 
-nav a {
-    color: var(--txt);
-    border-left: 0;
-    margin-left: 3px;
-}
 
-nav>div>ul {
-    margin: 0;
-    padding: 0;
+/*outer list*/
+
+nav.side>div>ul {
     border: 2px solid var(--navg);
     border-radius: 2px;
 }
 
-nav>div>ul ul {
+
+/* Nested lists*/
+
+nav.side>div>ul ul {
     padding-left: 2em;
     margin: 0;
     border: 0;
     overflow: hidden;
 }
 
-nav>div>ul ul * {
-    transition: color 0.5s ease;
+nav.side li {
+    font-size: 1.25em;
+    margin: 0;
+    display: flex;
 }
 
-nav>div>ul ul {
-    transition: all 1s ease;
+nav.side a {
+    color: var(--txt);
+    border-left: 0;
+    margin-left: 3px;
+    transition: color 0.75s ease;
+    transition: font-size 0.25s ease;
 }
 
-nav>div>ul div:not(:is(.open, .current)) ul {
+
+/* Nested list links that are not being hovered or on current scroll position*/
+
+nav.side>div>ul div:not(:is(.open, .current)) ul * {
+    color: var(--bcgn);
+    font-size: 0;
+}
+
+nav.side>div>ul div:not(:is(.open, .current)) :is(ul, ul div.dropbtn) {
     height: 0;
 }
 
-nav>div>ul div:not(:is(.open, .current)) ul * {
-    color: var(--bcgn);
-}
 
+/* active links */
 
-/* Only stick if you can fit */
-
-@media (min-height: 300px) {
-    nav ul {
-        position: sticky;
-        top: 0;
-    }
-}
-
-nav ul li a.current {
+nav.side ul li a:is(.current, :hover) {
     border-left: 3px solid var(--nava);
     margin-left: 0;
 }
 
-nav li.title {
+nav.side a:hover {
+    color: var(--nava);
+}
+
+
+/* Fake bold with a border*/
+
+nav.side li.title {
     font-size: 150%;
     border-bottom: 1.5px solid var(--gray);
 }
 
-nav span {
+
+/* Containers for dropdown*/
+
+nav.side span {
     flex-grow: 1;
     display: flex;
     padding: 0;
@@ -226,35 +264,25 @@ nav span {
     margin-left: 0;
 }
 
-nav span>a {
+
+/*Links with a dropdown*/
+
+nav.side span>a {
     padding: 0.25em 0 0.30em 0.35em;
     flex-shrink: 0;
     min-width: 50%;
 }
 
-nav li {
-    font-size: 1.25em;
-    margin: 0;
-    display: flex;
-}
 
-nav a:hover {
-    border-left: 3px solid var(--nava);
-    margin-left: 0;
-    color: var(--nava);
-}
-
-nav li::before {
-    border-radius: 0;
-    width: 0;
-    height: 0;
-    margin-right: 0;
-}
+/* CLickable div for dropdown */
 
 .dropbtn {
     flex-grow: 1;
     max-width: 50%;
 }
+
+
+/* dropdown arrow */
 
 .dropbtn i {
     border: solid var(--txt);
@@ -270,9 +298,22 @@ nav li::before {
     transition: transform 0.2s linear;
 }
 
-nav div:is(.open, .current)>li>span>div>i {
+
+/* Rotate dropdown when open */
+
+nav.side div:is(.open, .current) div.dropbtn>i {
     transform: rotate(45deg);
 }
+
+
+/* Remove pseudo element from list elements */
+
+nav.side li::before {
+    content: none;
+}
+
+
+/* class for link to top of page  */
 
 .nav-top-link a {
     border-bottom: 1.5px solid var(--gray);
@@ -281,7 +322,6 @@ nav div:is(.open, .current)>li>span>div>i {
 
 .nav-top-link .current {
     font-size: 0;
-    height: 0;
     color: var(--bcgn);
     border-bottom-width: 0;
 }

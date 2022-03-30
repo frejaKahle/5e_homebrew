@@ -1,6 +1,8 @@
 function scrollWatch() {
     let mainNavLinks = document.querySelectorAll("nav ul li a");
     let mainSections = document.querySelectorAll("main section");
+    let navbar = document.querySelector("nav.side");
+    let navbarcon = navbar.parentNode;
 
     let lastId;
     let cur = [];
@@ -16,6 +18,15 @@ function scrollWatch() {
 
     window.addEventListener("scroll", event => {
         let fromTop = window.scrollY;
+        let lastLinkDest = document.querySelector(mainNavLinks[mainNavLinks.length - 1].hash);
+        if (
+            navbarcon.offsetTop <= fromTop &&
+            lastLinkDest.offsetTop + lastLinkDest.offsetHeight > fromTop
+        ) {
+            navbar.classList.add("fixed");
+        } else {
+            navbar.classList.remove("fixed");
+        }
         mainNavLinks.forEach(link => {
             let section = document.querySelector(link.hash);
             let p;

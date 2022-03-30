@@ -8,18 +8,13 @@
 </head>
 
 <body>
-    <div id="top"></div>
-    <nav>
-        <div>
-            <ul></ul>
-        </div>
-    </nav>
 </body>
 
 <script type="text/javascript" src="../../content_loader.js"></script>
 <script type="text/javascript" src="../../scroll.js"></script>
 <script type="text/javascript">
-    dndclass("../../Classes", "Astromancer", body, navlist).then(n => {
+    pageSetup();
+    dndclass("../../Classes", "Astromancer", primary, sidenav.querySelector("ul")).then(n => {
         scrollWatch();
     });
 </script>

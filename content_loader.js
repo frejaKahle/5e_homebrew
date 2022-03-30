@@ -1,5 +1,5 @@
 var body = document.querySelector("body");
-var navlist = body.querySelector("nav ul");
+var primary, sidenav;
 
 function nameForm(text) {
     return text.replaceAll(" ", "_").toLowerCase();
@@ -125,17 +125,42 @@ function dndSubclasses(names, location, div, scname, scdesc, navlist) {
     })
 }
 
+function pageSetup() {
+    //TODO: Implement Site Navigation
+    let topdiv = document.createElement("div");
+    topdiv.id = "top";
+
+    // content of page
+    let contentdiv = document.createElement("div");
+    contentdiv.classList.add("content");
+    //secondary content: nav 
+    let secdiv = document.createElement("div");
+    sidenav = document.createElement("nav");
+    sidenav.appendChild(document.createElement("div"));
+    secdiv.appendChild(sidenav);
+    secdiv.classList.add("secondarycontent");
+    sidenav.classList.add("side");
+    sidenav.firstChild.appendChild(document.createElement("ul"));
+    navlist = sidenav.firstChild.firstChild;
+    contentdiv.appendChild(secdiv);
+    //Primary Content
+    primary = document.createElement('div');
+    primary.classList.add("primarycontent");
+    contentdiv.appendChild(primary);
+
+    body.appendChild(topdiv);
+    body.appendChild(contentdiv);
+}
+
 function dndclass(location, name, elem, navlist) {
     let folder = location + "/" + name;
     return fetch(folder + "/" + "features.json")
         .then(response => response.json())
         .then(data => {
-            classdiv = document.createElement('div');
-            classdiv.innerHTML += "<div id=\"" + nameForm(data.clsname) + "\"><br><h1>" + data.clsname + "</h1><p cstyle=\"font-size:20px; color:grey; display:inline;\">Class Details</p><p>" + data.clsflavor + "</p><h2>" + data.sflavorname + "</h2><p>" + data.sflavor +
+            elem.innerHTML += "<div id=\"" + nameForm(data.clsname) + "\"><br><h1>" + data.clsname + "</h1><p cstyle=\"font-size:20px; color:grey; display:inline;\">Class Details</p><p>" + data.clsflavor + "</p><h2>" + data.sflavorname + "</h2><p>" + data.sflavor +
                 "</p></div><div id=\"creating" + nameForm(data.aan) + nameForm(data.clsname) + "\"><h2>Creating" + data.aan + data.clsname + "</h2><div class=\"quick\"><h5>Quick Build</h5><p>" + data.quickbuild + "</p></div></div>" +
                 table(data.table, data.clsname);
-            elem.appendChild(classdiv);
-            classdiv.style = "margin-bottom:30vh"
+
 
             navlist.appendChild(navlink("back to top", "top", { "classes": ["nav-top-link"] }));
             navlist.appendChild(navlink(data.clsname, null, { "classes": ["title"] }));
@@ -143,14 +168,15 @@ function dndclass(location, name, elem, navlist) {
             navlist.appendChild(navlink(data.clsname + " Table"));
 
             return features(data.clsname, data.features, folder + "/features").then(feats => {
-                classdiv.innerHTML += feats;
+                elem.innerHTML += feats;
                 navfeats = [];
                 data.features.forEach(name => {
                     navfeats.push(navlink(name));
                 });
                 navlist.appendChild(navlink(data.clsname + " Features", null, { "nested": navfeats }))
 
-                return dndSubclasses(data.subclasses, folder + "/subclasses", classdiv, data.subclassname, data.subclassdesc, navlist).then(n => {
+                return dndSubclasses(data.subclasses, folder + "/subclasses", elem, data.subclassname, data.subclassdesc, navlist).then(n => {
+
                     return null;
                 });
             });
