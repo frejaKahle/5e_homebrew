@@ -127,7 +127,7 @@
             "5th",
             "+3",
             {
-                "refs": ["Power Cycle"],
+                "refs": ["Spell Cycle"],
                 "value": "",
                 "classes": ["tlta"]
             },
@@ -147,7 +147,7 @@
             "6th",
             "+3",
             {
-                "value": "Astronomical Source Feature",
+                "value": "Astronomical Object Feature",
                 "classes": ["tlta"]
             },
             "3",
@@ -206,7 +206,7 @@
             "9th",
             "+4",
             {
-                "refs": ["Power Cycle"],
+                "refs": ["Spell Cycle"],
                 "value": " (Imporvement)",
                 "classes": ["tlta"]
             },
@@ -265,7 +265,7 @@
             "12th",
             "+4",
             {
-                "refs": ["Ability Score Improvement"],
+                "refs": ["Ability Object Improvement"],
                 "value": "",
                 "classes": ["tlta"]
             },
@@ -285,7 +285,7 @@
             "13th",
             "+5",
             {
-                "refs": ["Power Cycle"],
+                "refs": ["Spell Cycle"],
                 "value": " (Improvement)",
                 "classes": ["tlta"]
             },
@@ -305,7 +305,7 @@
             "14th",
             "+5",
             {
-                "value": "Astronomical Source Feature",
+                "value": "Astronomical Object Feature",
                 "classes": ["tlta"]
             },
             "4",
@@ -363,7 +363,7 @@
             "17th",
             "+6",
             {
-                "refs": ["Power Cycle"],
+                "refs": ["Spell Cycle"],
                 "value": " (Improvement)",
                 "classes": ["tlta"]
             },
@@ -422,7 +422,7 @@
             "20th",
             "+6",
             {
-                "value": "Astronomical Source Feature",
+                "value": "Astronomical Object Feature",
                 "classes": ["tlta"]
             },
             "4",

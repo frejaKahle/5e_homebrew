@@ -1,3 +1,6 @@
+var body = document.querySelector("body");
+var navlist = body.querySelector("nav ul");
+
 function nameForm(text) {
     return text.replaceAll(" ", "_").toLowerCase();
 }
@@ -7,24 +10,27 @@ function nameFormInv(text) {
 }
 
 function feature(name, location) {
-    let html = "<h4>" + name + "</h4>";
+    let html = "<div id=\"" + nameForm(name) + "\"><h4>" + name + "</h4>";
     return fetch(location + "/" + nameForm(name) + ".html")
         .then(response => response.text())
-        .then(text => { return html + text });
+        .then(text => { return html + text + "</div>" });
 }
 
-function features(names, location) {
+function features(clsname, names, location, sc = false) {
     let promises = [];
     names.forEach(name => {
         promises.push(feature(name, location))
     });
     return Promise.all(promises).then((values) => {
-        return values.join('');
+        if (sc)
+            return values.join('');
+        else
+            return "<div id=\"" + nameForm(clsname) + "_features\">" + values.join('') + "</div>";
     })
 }
 
 function table(tbl, title) {
-    let html = "<h3>" + title + "</h3><table>";
+    let html = "<div id=\"" + nameForm(title) + "_table\"><h3>The " + title + " Table</h3><table>";
     let row, refs, rsm;
     let rn = 0;
     tbl.forEach(r => {
@@ -65,50 +71,140 @@ function table(tbl, title) {
         rn = rn + 2 - rsm
         html = html + row + "</tr>"
     });
-    return html + "</table>";
+    return html + "</table></div>";
 }
 
-function dndsubclass(name, location) {
+function dndSubclassFNames(name, location) {
     let folder = location + "/" + nameForm(name);
-    let html = "<h3>" + name + "</h3>";
+    return fetch(folder + "/" + "features.json")
+        .then(response => response.json())
+        .then(data => {
+            return data.features
+        });
+}
+
+function dndSubclass(name, location) {
+    let folder = location + "/" + nameForm(name);
+    let html = "<div id=\"" + nameForm(name) + "\"><h3>" + name + "</h3>";
     return fetch(folder + "/" + "features.json")
         .then(response => response.json())
         .then(data => {
             html = html + "<p>" + data.scdesc + "</p>";
-            return features(data.features, folder).then(text => {
-                console.log(text);
-                return html + text;
+            return features(name, data.features, folder, true).then(text => {
+                return html + text + "</div>";
             });
         });
 }
 
-function dndsubclasses(names, location, div) {
-    let promises = [];
+function dndSubclasses(names, location, div, scname, scdesc, navlist) {
+    let p1 = [];
+    let p2 = [];
+    let l1 = [];
+    let l2 = [];
     names.forEach(name => {
-        promises.push(dndsubclass(name, location));
+        p1.push(dndSubclass(name, location));
+        p2.push(dndSubclassFNames(name, location));
     });
-    Promise.all(promises).then((values) => {
-        values.forEach(sc => {
-            div.innerHTML += sc;
-        });
+    let p3 = Promise.all(p1).then((values) => {
+        div.innerHTML += "<div id=\"" + nameForm(scname) + "\"><h2>" + scname + "</h2><p>" + scdesc + "</p>" + values.join('') + "</div>";
     });
+    let fnl;
+    let p4 = Promise.all(p2).then((values) => {
+        for (let i = 0; i < names.length; i++) {
+            l1 = [];
+            values[i].forEach(f => {
+                fnl = navlink(f);
+                l1.push(fnl);
+            });
+            l2.push(navlink(names[i], null, { "nested": l1 }));
+        }
+        navlist.appendChild(navlink(scname, null, { "nested": l2 }));
+    });
+    return Promise.all([p3, p4]).then(n => {
+        return null;
+    })
 }
 
-function dndclass(location, name, elem) {
+function dndclass(location, name, elem, navlist) {
     let folder = location + "/" + name;
-    fetch(folder + "/" + "features.json")
+    return fetch(folder + "/" + "features.json")
         .then(response => response.json())
         .then(data => {
             classdiv = document.createElement('div');
-            classdiv.innerHTML += "<br><h1>" + data.clsname + "</h1><p cstyle=\"font-size:20px; color:grey; display:inline;\">Class Details</p><p>" + data.clsflavor + "</p><h2>" + data.sflavorname + "</h2><p>" + data.sflavor +
-                "</p><h2>Creating" + data.aan + data.clsname + "</h2><div class=\"quick\"><h5>Quick Build</h5><p>" + data.quickbuild + "</p></div>" +
-                table(data.table, "The " + data.clsname + " Table");
+            classdiv.innerHTML += "<div id=\"" + nameForm(data.clsname) + "\"><br><h1>" + data.clsname + "</h1><p cstyle=\"font-size:20px; color:grey; display:inline;\">Class Details</p><p>" + data.clsflavor + "</p><h2>" + data.sflavorname + "</h2><p>" + data.sflavor +
+                "</p></div><div id=\"creating" + nameForm(data.aan) + nameForm(data.clsname) + "\"><h2>Creating" + data.aan + data.clsname + "</h2><div class=\"quick\"><h5>Quick Build</h5><p>" + data.quickbuild + "</p></div></div>" +
+                table(data.table, data.clsname);
             elem.appendChild(classdiv);
             classdiv.style = "margin-bottom:30vh"
-            features(data.features, folder + "/features").then(feats => {
-                classdiv.innerHTML += feats + "<h2 id=\"#" + nameForm(data.subclassname) + "\">" + data.subclassname + "</h2><p>" + data.subclassdesc + "</p>";
-                dndsubclasses(data.subclasses, folder + "/subclasses", classdiv);
-            });
 
+            navlist.appendChild(navlink("back to top", "top", { "classes": ["nav-top-link"] }));
+            navlist.appendChild(navlink(data.clsname, null, { "classes": ["title"] }));
+            navlist.appendChild(navlink("Creating" + nameFormInv(data.aan) + data.clsname));
+            navlist.appendChild(navlink(data.clsname + " Table"));
+
+            return features(data.clsname, data.features, folder + "/features").then(feats => {
+                classdiv.innerHTML += feats;
+                navfeats = [];
+                data.features.forEach(name => {
+                    navfeats.push(navlink(name));
+                });
+                navlist.appendChild(navlink(data.clsname + " Features", null, { "nested": navfeats }))
+
+                return dndSubclasses(data.subclasses, folder + "/subclasses", classdiv, data.subclassname, data.subclassdesc, navlist).then(n => {
+                    return null;
+                });
+            });
         });
+}
+
+function navlink(name, link = null, options = null) {
+    link = link || nameForm(name)
+    let li = document.createElement("li");
+    let s = document.createElement("span");
+    li.appendChild(s);
+    let t = s;
+    let r = li;
+    if (options !== null) {
+        if (options.italics !== undefined && options.italics === true) {
+            t.appendChild(document.createElement("i"));
+            t = t.lastChild;
+        }
+        if (options.bold !== undefined && options.bold === true) {
+            t.appendChild(document.createElement("b"));
+            t = t.lastChild;
+        }
+        if (options.classes !== undefined && options.classes.length > 0) {
+            options.classes.forEach(cls => {
+                li.classList.add(cls);
+            });
+        }
+        if (options.nested !== undefined && options.nested.length > 0) {
+            let ul = document.createElement("ul");
+            options.nested.forEach(le => {
+                ul.appendChild(le);
+            });
+            btn = document.createElement("div");
+            btn.setAttribute("onclick", `navdrop(${nameForm(name)}_dropdown)`);
+            btn.appendChild(document.createElement("i"));
+            btn.classList.add("dropbtn");
+            s.appendChild(btn);
+            let d = document.createElement("div");
+            d.id = nameForm(name) + "_dropdown"
+            d.appendChild(li);
+            d.appendChild(ul);
+            r = d;
+        }
+    }
+    let a = document.createElement("a");
+    a.innerHTML = name
+    a.href = `#${link}`;
+    t.prepend(a);
+    return r;
+}
+
+function navdrop(elem) {
+    if (elem.classList.contains("open"))
+        elem.classList.remove("open");
+    else
+        elem.classList.add("open");
 }
