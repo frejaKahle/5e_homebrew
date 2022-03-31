@@ -300,7 +300,7 @@ nav.side span>a {
 
 /* Rotate dropdown when open */
 
-nav.side div:is(.open, .current) div.dropbtn>i {
+nav.side div:is(.open, .current)>li>span>div.dropbtn>i {
     transform: rotate(45deg);
 }
 
