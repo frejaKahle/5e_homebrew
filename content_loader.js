@@ -234,3 +234,7 @@ function navdrop(elem) {
     else
         elem.classList.add("open");
 }
+
+function sitenav() {
+
+}
