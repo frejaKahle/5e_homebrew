@@ -162,7 +162,7 @@ function dndclass(location, name, elem, navlist) {
                 table(data.table, data.clsname);
 
 
-            navlist.appendChild(navlink("back to top", "top", { "classes": ["nav-top-link"] }));
+            navlist.appendChild(navlink("back to top", "top", { "classes": ["nav-top-link"], "linkclasses": ["current"] }));
             navlist.appendChild(navlink(data.clsname, null, { "classes": ["title"] }));
             navlist.appendChild(navlink("Creating" + nameFormInv(data.aan) + data.clsname));
             navlist.appendChild(navlink(data.clsname + " Table"));
@@ -190,6 +190,9 @@ function navlink(name, link = null, options = null) {
     li.appendChild(s);
     let t = s;
     let r = li;
+    let a = document.createElement("a");
+    a.innerHTML = name
+    a.href = `#${link}`;
     if (options !== null) {
         if (options.italics !== undefined && options.italics === true) {
             t.appendChild(document.createElement("i"));
@@ -202,6 +205,11 @@ function navlink(name, link = null, options = null) {
         if (options.classes !== undefined && options.classes.length > 0) {
             options.classes.forEach(cls => {
                 li.classList.add(cls);
+            });
+        }
+        if (options.linkclasses !== undefined && options.linkclasses.length > 0) {
+            options.linkclasses.forEach(cls => {
+                a.classList.add(cls);
             });
         }
         if (options.nested !== undefined && options.nested.length > 0) {
@@ -221,9 +229,7 @@ function navlink(name, link = null, options = null) {
             r = d;
         }
     }
-    let a = document.createElement("a");
-    a.innerHTML = name
-    a.href = `#${link}`;
+
     t.prepend(a);
     return r;
 }
