@@ -6,6 +6,7 @@
     --gray: #80808018;
     --navg: #80808030;
     --nava: orange;
+    --selg: #ffb53080;
     background-color: var(--bcgn);
     color: var(--txt);
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
@@ -47,7 +48,7 @@ html {
 
 div {
     scroll-margin-top: -5px;
-    padding: 0.01px 0;
+    padding: 0.1px 0;
 }
 
 #top {
@@ -228,7 +229,7 @@ nav.side>div>ul div:not(:is(.open, .current)) ul * {
     font-size: 0;
 }
 
-nav.side>div>ul div:not(:is(.open, .current)) ul div.dropbtn i {
+nav.side>div>ul div:not(:is(.open, .current)) ul div.dropbtn div {
     border: none;
 }
 
@@ -237,6 +238,11 @@ nav.side>div>ul div:not(:is(.open, .current)) ul div.dropbtn i {
 
 nav.side ul li a:is(.current, :hover) {
     border-left: 3px solid var(--nava);
+    margin-left: 0;
+}
+
+nav.side ul li a.within:not(.current) {
+    border-left: 3px solid var(--selg);
     margin-left: 0;
 }
 
@@ -283,7 +289,7 @@ nav.side span>a {
 
 /* dropdown arrow */
 
-.dropbtn i {
+.dropbtn div {
     border: solid var(--txt);
     width: 0;
     border-width: 0 3px 3px 0;
@@ -300,7 +306,7 @@ nav.side span>a {
 
 /* Rotate dropdown when open */
 
-nav.side div:is(.open, .current)>li>span>div.dropbtn>i {
+nav.side div:is(.open, .current)>li>span>div.dropbtn>div {
     transform: rotate(45deg);
 }
 
