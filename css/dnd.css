@@ -192,7 +192,7 @@ nav.side ul {
 
 /*outer list*/
 
-nav.side>div>ul {
+nav.side>ul {
     border: 2px solid var(--navg);
     border-radius: 2px;
 }
@@ -200,7 +200,7 @@ nav.side>div>ul {
 
 /* Nested lists*/
 
-nav.side>div>ul ul {
+nav.side>ul ul {
     padding-left: 2em;
     margin: 0;
     border: 0;
@@ -223,12 +223,12 @@ nav.side a {
 
 /* Nested list links that are not being hovered or on current scroll position*/
 
-nav.side>div>ul div:not(:is(.open, .current)) ul * {
+nav.side>ul div:not(:is(.open, .current)) ul * {
     color: var(--bcgn);
     font-size: 0;
 }
 
-nav.side>div>ul div:not(:is(.open, .current)) ul div.dropbtn i {
+nav.side>ul div:not(:is(.open, .current)) ul div.dropbtn i {
     border: none;
 }
 
@@ -255,7 +255,7 @@ nav.side li.title {
 
 /* Containers for dropdown*/
 
-nav.side span {
+nav span {
     flex-grow: 1;
     display: flex;
     padding: 0;
@@ -266,7 +266,7 @@ nav.side span {
 
 /*Links with a dropdown*/
 
-nav.side span>a {
+nav span>a {
     padding: 0.25em 0 0.30em 0.35em;
     flex-shrink: 0;
     min-width: 50%;
@@ -277,7 +277,7 @@ nav.side span>a {
 
 .dropbtn {
     flex-grow: 1;
-    max-width: 50%;
+    min-width: 1.5em;
 }
 
 
@@ -291,7 +291,7 @@ nav.side span>a {
     position: relative;
     float: right;
     right: 0.75em;
-    top: 0.5em;
+    top: 0.45em;
     transform: rotate(-45deg);
     -webkit-transform: rotate(-45deg);
     transition: transform 0.2s linear;
@@ -300,22 +300,15 @@ nav.side span>a {
 
 /* Rotate dropdown when open */
 
-nav.side div:is(.open, .current)>li>span>div.dropbtn>i {
+nav div:is(.open, .current)>li>span>div.dropbtn>i {
     transform: rotate(45deg);
-}
-
-
-/* Remove pseudo element from list elements */
-
-nav.side li::before {
-    content: none;
 }
 
 
 /* class for link to top of page  */
 
 .nav-top-link a {
-    border-bottom: 1.5px solid var(--gray);
+    border-bottom: 1.75px solid var(--gray);
     flex-grow: 1;
 }
 
@@ -323,4 +316,60 @@ nav.side li::before {
     font-size: 0;
     color: var(--bcgn);
     border-bottom-width: 0;
+}
+
+
+/* Site/pages navigation / Menu */
+
+nav.menu ul {
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav.menu .title {
+    font-size: 150%;
+}
+
+nav.menu li {
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav.menu a {
+    color: var(--txt);
+}
+
+nav li::before {
+    content: none;
+}
+
+nav.menu>ul>div>* {
+    display: flex;
+}
+
+nav.menu>ul>* {
+    border: solid var(--gray);
+    border-width: 0 2px 2px 0;
+    flex-grow: 1;
+}
+
+nav.menu>ul>*:last-child {
+    border-width: 0 0 2px 0;
+}
+
+nav.menu>ul {
+    display: inline-flex;
+    flex-wrap: nowrap;
+    width: 100%;
+}
+
+nav.menu>ul>li,
+nav.menu>ul>div>li {
+    font-size: larger;
+}
+
+nav.menu :is(a, .dropbtn) {
+    padding: 0.5em;
 }
