@@ -229,8 +229,8 @@ nav.side>ul div:not(:is(.open, .current)) ul * {
     font-size: 0;
 }
 
-nav.side>div>ul div:not(:is(.open, .current)) ul div.dropbtn div {
-    border: none;
+nav.side>ul div:not(:is(.open, .current)) ul div.dropbtn>div {
+    display: none;
 }
 
 
