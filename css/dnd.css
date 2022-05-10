@@ -236,12 +236,12 @@ nav.side>div>ul div:not(:is(.open, .current)) ul div.dropbtn div {
 
 /* active links */
 
-nav.side ul li a:is(.current, :hover) {
+nav.side li a:is(.current, :hover) {
     border-left: 3px solid var(--nava);
     margin-left: 0;
 }
 
-nav.side ul li a.within:not(.current) {
+nav.side li a.within:not(.current) {
     border-left: 3px solid var(--selg);
     margin-left: 0;
 }
