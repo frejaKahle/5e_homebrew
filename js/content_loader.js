@@ -136,11 +136,10 @@ function pageSetup() {
     //secondary content: nav 
     let secdiv = document.createElement("div");
     sidenav = document.createElement("nav");
-    sidenav.appendChild(document.createElement("div"));
     secdiv.appendChild(sidenav);
     secdiv.classList.add("secondarycontent");
     sidenav.classList.add("side");
-    sidenav.firstChild.appendChild(document.createElement("ul"));
+    sidenav.appendChild(document.createElement("ul"));
     navlist = sidenav.firstChild.firstChild;
     contentdiv.appendChild(secdiv);
     //Primary Content

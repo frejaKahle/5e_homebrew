@@ -127,7 +127,7 @@
             "5th",
             "+3",
             {
-                "refs": ["Spell Cycle"],
+                "refs": ["Magic Mobility"],
                 "value": "",
                 "classes": ["tlta"]
             },
@@ -206,7 +206,7 @@
             "9th",
             "+4",
             {
-                "refs": ["Spell Cycle"],
+                "refs": ["Magic Mobility"],
                 "value": " (Imporvement)",
                 "classes": ["tlta"]
             },
@@ -363,7 +363,7 @@
             "17th",
             "+6",
             {
-                "refs": ["Spell Cycle"],
+                "refs": ["Magic Mobility"],
                 "value": " (Improvement)",
                 "classes": ["tlta"]
             },
@@ -448,8 +448,9 @@
         "Astronomical Object",
         "Object Spells",
         "Ability Score Improvement",
-        "Spell Cycle",
-        "Astronomical Aura"
+        "Magic Mobility",
+        "Astronomical Aura",
+        "Spell Cycle"
     ],
     "subclassname": "Astronomical Objects",
     "subclassdesc": "Astromancers have many options to draw power from. Specializing in a specific source of power can grant special abilities.",
