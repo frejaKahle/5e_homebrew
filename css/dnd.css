@@ -229,11 +229,7 @@ nav.side>ul div:not(:is(.open, .current)) ul * {
     font-size: 0;
 }
 
-<<<<<<< HEAD
-nav.side>ul div:not(:is(.open, .current)) ul div.dropbtn i {
-=======
 nav.side>div>ul div:not(:is(.open, .current)) ul div.dropbtn div {
->>>>>>> 9a65fdf057c4316d01424919d2ed4fcfeb0a76b2
     border: none;
 }
 
@@ -310,11 +306,7 @@ nav span>a {
 
 /* Rotate dropdown when open */
 
-<<<<<<< HEAD
-nav div:is(.open, .current)>li>span>div.dropbtn>i {
-=======
 nav.side div:is(.open, .current)>li>span>div.dropbtn>div {
->>>>>>> 9a65fdf057c4316d01424919d2ed4fcfeb0a76b2
     transform: rotate(45deg);
 }
 
