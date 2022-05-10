@@ -18,6 +18,7 @@ function scrollWatch() {
 
     window.addEventListener("scroll", event => {
         let fromTop = window.scrollY;
+        let vpBotFromTop = fromTop + window.innerHeight;
         let lastLinkDest = document.querySelector(mainNavLinks[mainNavLinks.length - 1].hash);
         if (
             navbarcon.offsetTop <= fromTop &&
@@ -34,22 +35,38 @@ function scrollWatch() {
                 p = link.parentNode.parentNode.parentNode.parentNode;
             else
                 p = link.parentNode.parentNode.parentNode;
-            //if (link.parentNode.parentElement.tagName === "ul")
-            //    p = link.parentNode.parentNode;
-            //else
-            //    p = link.parentNode.parentNode.parentNode;
-            if (
-                section.offsetTop <= fromTop &&
-                section.offsetTop + section.offsetHeight > fromTop
-            ) {
-                link.classList.add("current");
-                p.classList.add("current");
-            } else {
-                link.classList.remove("current");
+            if (section.offsetTop + section.offsetHeight > fromTop) {
+                if (section.offsetTop <= fromTop) {
+                    link.classList.add("current");
+                    p.classList.add("current");
 
-                if (p.querySelector(".current") === null)
-                    p.classList.remove("current");
+                } else {
+                    link.classList.remove("current");
+
+                    if (p.querySelector(".current") === null)
+                        p.classList.remove("current");
+                    if (section.offsetTop < vpBotFromTop) {
+                        link.classList.add("within");
+                        p.classList.add("within");
+                    } else {
+                        link.classList.remove("within");
+                        p.classList.remove("within");
+                    }
+
+                }
+            } else {
+                link.classList.remove("current", "within");
+
+                if (p.querySelector(":is(.current, .within)") === null)
+                    p.classList.remove("current", "within");
             }
         });
     });
+}
+
+function innerMostFirstChild(elem) {
+    if (elem.firstChild !== undefined && elem.firstChild !== null && elem.querySelector("*") !== null) {
+        return innerMostFirstChild(elem.firstChild);
+    }
+    return elem;
 }

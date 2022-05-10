@@ -218,7 +218,7 @@ function navlink(name, link = null, options = null) {
             });
             btn = document.createElement("div");
             btn.setAttribute("onclick", `navdrop(${nameForm(name)}_dropdown)`);
-            btn.appendChild(document.createElement("i"));
+            btn.appendChild(document.createElement("div"));
             btn.classList.add("dropbtn");
             s.appendChild(btn);
             let d = document.createElement("div");
