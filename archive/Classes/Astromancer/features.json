@@ -47,7 +47,7 @@
             "1st",
             "+2",
             {
-                "refs": ["Spellcasting", "Astronomical Mechanism"],
+                "refs": ["Spellcasting", "Astral Spellcasting Kernel"],
                 "value": "",
                 "classes": ["tlta"]
             },
@@ -147,7 +147,7 @@
             "6th",
             "+3",
             {
-                "value": "Astronomical Object Feature",
+                "value": "Astral Object Feature",
                 "classes": ["tlta"]
             },
             "3",
@@ -166,7 +166,7 @@
             "7th",
             "+3",
             {
-                "refs": ["Astronomical Mechanism"],
+                "refs": ["Astral Spellcasting Kernel"],
                 "value": " (Improvement)",
                 "classes": ["tlta"]
             },
@@ -207,7 +207,7 @@
             "+4",
             {
                 "refs": ["Magic Mobility"],
-                "value": " (Imporvement)",
+                "value": " (Improvement)",
                 "classes": ["tlta"]
             },
             "3",
@@ -226,7 +226,7 @@
             "10th",
             "+4",
             {
-                "refs": ["Astronomical Aura"],
+                "refs": ["Astral Aura"],
                 "value": "",
                 "classes": ["tlta"]
             },
@@ -246,7 +246,8 @@
             "11th",
             "+4",
             {
-                "value": "&mdash;",
+                "refs": ["Astral Displacement"],
+                "value": "",
                 "classes": ["tlta"]
             },
             "4",
@@ -305,7 +306,7 @@
             "14th",
             "+5",
             {
-                "value": "Astronomical Object Feature",
+                "value": "Astral Object Feature",
                 "classes": ["tlta"]
             },
             "4",
@@ -324,7 +325,8 @@
             "15th",
             "+5",
             {
-                "value": "&mdash;",
+                "refs": ["Astral Displacement"],
+                "value": " (Improvement)",
                 "classes": ["tlta"]
             },
             "4",
@@ -363,7 +365,7 @@
             "17th",
             "+6",
             {
-                "refs": ["Magic Mobility"],
+                "refs": ["Spell Cycle"],
                 "value": " (Improvement)",
                 "classes": ["tlta"]
             },
@@ -422,7 +424,7 @@
             "20th",
             "+6",
             {
-                "value": "Astronomical Object Feature",
+                "value": "Astral Object Feature",
                 "classes": ["tlta"]
             },
             "4",
@@ -443,16 +445,17 @@
         "Proficiencies",
         "Equipment",
         "Spellcasting",
-        "Astronomical Mechanism",
+        "Astral Spellcasting Kernel",
         "Astronomical Theses",
-        "Astronomical Object",
+        "Astral Object",
         "Object Spells",
         "Ability Score Improvement",
         "Magic Mobility",
-        "Astronomical Aura",
+        "Astral Aura",
+        "Astral Displacement",
         "Spell Cycle"
     ],
-    "subclassname": "Astronomical Objects",
+    "subclassname": "Astral Objects",
     "subclassdesc": "Astromancers have many options to draw power from. Specializing in a specific source of power can grant special abilities.",
     "subclasses": [
         "Dwarf Star",
